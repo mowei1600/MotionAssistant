@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/png" href="https://apis.jxcxin.cn/api/qq?qq=1600198489">
+    <title>莫威云运动助手 - 莫威工具箱</title>
+    <link rel="stylesheet" href="assets/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="assets/css/style.css" media="all">
+    <script src="assets/layui/layui.js"></script>
+    <script src="assets/js/jquery.js"></script>
+    <style>
+        .showMessage {
+            padding: 10px 20px;
+            border-radius: 5px;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            color: #ffffff;
+            z-index: 999;
+            transform: translate(-50%, 0);
+        }
+
+        .showMessageSuccess {
+            background-color: #f0f9eb;
+            border: 1px solid #E1F3D8;
+            color: #67c23a;
+        }
+
+        .showMessageError {
+            background-color: #fef0f0;
+            border: 1px solid #fde2e2;
+            color: #F76C6C;
+        }
+    </style>
+</head>
+<body layadmin-themealias="dark-blue" style="margin-top: 1em;">
+<div class="imgc"></div>
+<div id="divLoading">
+    <div class="layui-fluid">
+        <div class="a layui-anim layui-anim-fadein">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-sm8 layui-col-sm-offset2 layui-col-md6  layui-col-md-offset3 layui-col-lg6 layui-col-xs12  layui-col-lg-offset3">
+                    <div class="layui-card">
+                        <center>
+                            <div class="layui-card-header" style="font-size: 1.5em;text-align: left;">莫威云运动助手
+                            </div>
+                            <div class="layui-card-body">
+                                <img src="https://apis.jxcxin.cn/api/qq?qq=1600198489" alt="Avatar" width="80"
+                                     height="80"
+                                     style="border:1px solid #FFF;-moz-box-shadow:0 0 3px #AAA;-webkit-box-shadow:0 0 3px #AAA;border-radius: 50%;box-shadow:0 0 3px #AAA;padding:3px;margin-right: 3px;margin-left: 6px;"></p>
+                                <br/>
+                                <h1>每日运动</h1><br/>
+                                <span style="font-weight: bold;float: revert;color: #00dbde">提示：建议开启自动任务跟动态步数，享受每天自动云刷步数</span>
+                                <div class="layui-form layui-form-pane">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">用户名</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" class="layui-input" id="user" name="user"
+                                                   placeholder="Zepp Life账号(原小米运动)">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">密码</label>
+                                        <div class="layui-input-block">
+                                            <input type="password" class="layui-input" id="pass" name="pass"
+                                                   placeholder="Zepp Life密码(原小米运动)">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">步数</label>
+                                        <div class="layui-input-block">
+                                            <input type="number" class="layui-input" id="step" name="step"
+                                                   placeholder="1~98800（如果为空则步数是随机）">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">自动任务</label>
+                                        <div class="layui-input-block">
+                                            <select class="layui-input" id="timedOrNot" name="timedOrNot">
+                                                <option value="0">关闭</option>
+                                                <option value="1">开启</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <button id="subimt" onclick="subimt()"
+                                            class="layui-btn layui-btn layui-btn-lg layui-btn-normal layui-btn-fluid"
+                                            type="submit" lay-filter="formDemo">提交
+                                    </button>
+                                    <br><br>
+                                    <button onclick="popnotice()"
+                                            class="layui-btn layui-btn layui-btn-lg layui-btn-danger layui-btn-fluid"
+                                            type="submit" lay-filter="formDemo">站点公告
+                                    </button>
+                                </div>
+                            </div>
+                            <a href="help.html">常见问题</a><br><br>
+                    </div>
+                    </center>
+                    <div class="layui-card">
+                        <center>
+                            <div class="layui-card-header" style="font-size: 1.5em;text-align: center;">使用帮助
+                            </div>
+                            <div class="layui-card-body">
+                                <div class="well" style="text-align: left;">
+                                    1.从应用商店下载Zepp Life(原小米运动),打开软件通过手机号注册登录</p>
+                                    2.登录之后，点击我的->第三方接入->绑定需要同步的第三方平台</p>
+                                    3.回到提交网页版，登陆，提交步数即可同步至你绑定的所有平台</p>
+                                    如果步数每天都是0步，可能是刷步步数太多导致被举报封排行榜7天(7天后自动恢复)</p>
+                                    建议日步数不要超过5万</p>
+                                    如遇账号密码正确但还是提示错误，请尝试手动登录Zepp
+                                    Life(原小米运动)APP后等待几分钟再试</p>
+                                    <span style="font-weight: bold;color: red">自动任务说明：每天中午12点定时提交步数！</span>
+                                </div>
+                                <hr>
+                                <footer class="col-sm-12 text-center">
+                                    <p class="m-b-0">Copyright © 2022 <a href="">莫威云运动助手</a></p>
+                                </footer>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="assets/layui/layui.js"></script>
+<script src="assets/layer/layer.js"></script>
+<script src="assets/js/gonggao.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/axios.js"></script>
+
+</body>
+</html>
